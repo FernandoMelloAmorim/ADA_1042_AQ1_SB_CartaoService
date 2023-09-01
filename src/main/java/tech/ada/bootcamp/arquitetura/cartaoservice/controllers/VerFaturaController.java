@@ -10,10 +10,9 @@ import tech.ada.bootcamp.arquitetura.cartaoservice.payloads.response.FaturaRespo
 @RequestMapping("/fatura")
 @Slf4j
 public class VerFaturaController {
-
     @GetMapping(path = "/{numeroCartao}/{mes}/{ano}", produces = "application/json" )
-    public FaturaResponse adicionarDependente(@PathVariable("numeroCartao") String numeroCartao
-            , @PathVariable("mes") Integer mes, @PathVariable("ano") Integer ano){
+    public FaturaResponse adicionarDependente(@PathVariable("numeroCartao") String numeroCartao,
+                                              @PathVariable("mes") Integer mes, @PathVariable("ano") Integer ano){
         return new FaturaResponse();
     }
 
