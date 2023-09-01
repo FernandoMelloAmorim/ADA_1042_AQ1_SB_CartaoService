@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import tech.ada.bootcamp.arquitetura.cartaoservice.entities.Cartao;
 import tech.ada.bootcamp.arquitetura.cartaoservice.entities.Usuario;
+import tech.ada.bootcamp.arquitetura.cartaoservice.exception.UsuarioNaoEncontradoException;
 import tech.ada.bootcamp.arquitetura.cartaoservice.payloads.TipoCartao;
 import tech.ada.bootcamp.arquitetura.cartaoservice.payloads.request.CadastroUsuarioRequest;
 import tech.ada.bootcamp.arquitetura.cartaoservice.repositories.UsuarioRepository;
@@ -33,6 +34,12 @@ public class UsuarioServiceImpl implements UsuarioService {
         return usuarioRepository.save(novoUsuario);
     }
 
+    @Override
+    public Usuario buscarUsuarioPorIdentificador(String identificador) {
+        return usuarioRepository.findByIdentificador(identificador)
+                .orElseThrow(() -> new UsuarioNaoEncontradoException(
+                        "Usuário não encontrado com o identificador: " + identificador));    }
+
     private Usuario mapCadastroUsuarioRequestToUsuario(CadastroUsuarioRequest request) {
 
         Usuario usuario = new Usuario();
@@ -60,3 +67,11 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
 }
+
+/**
+ *         // lógica para mapear o tipo de cartão a partir dos cartões do usuário
+ *         if (!usuario.getCartoes().isEmpty()) {
+ *             Cartao primeiroCartao = usuario.getCartoes().get(0);
+ *             response.setTipoCartao(primeiroCartao.getTipoCartao());
+ *             response.setNomeTitularCartao(primeiroCartao.getNomeTitular());
+ */

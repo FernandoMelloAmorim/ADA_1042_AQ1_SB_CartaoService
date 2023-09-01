@@ -11,4 +11,6 @@ public interface UsuarioService {
 
     Usuario cadastra(CadastroUsuarioRequest cadastroUsuarioRequest);
 
+    Usuario buscarUsuarioPorIdentificador(String identificador);
+
 }
