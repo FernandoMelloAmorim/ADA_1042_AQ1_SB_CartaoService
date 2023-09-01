@@ -9,15 +9,14 @@ server:
 spring:
   main:
     allow-bean-definition-overriding: true
-  datasource:
-    url: jdbc:postgresql://localhost:5433/cartao
-    username: cartao
-    password: cartao
-    continue-on-error: true
+#  datasource:
+#    url: jdbc:postgresql://localhost:5433/cartao
+#    username: cartao
+#    password: cartao
 
   application:
     name: cartoes-ms
-  jpa:
+#  jpa:
     open-in-view: false
     show-sql: true
     format-sql: true
@@ -29,5 +28,23 @@ spring:
         jdbc:
           batch_size: 50
   liquibase:
-    enabled: true
+    enabled: false
     change-log: classpath:db/changelog/changelog-local.xml
+  sql:
+    init:
+      continue-on-error: true
+
+# h2 http://localhost:9080/h2-console
+  datasource:
+    driver-class-name: org.h2.Driver
+    username: sa
+    url: jdbc:h2:mem:dbteste
+    password:
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+    show-sql: 'true'
+
