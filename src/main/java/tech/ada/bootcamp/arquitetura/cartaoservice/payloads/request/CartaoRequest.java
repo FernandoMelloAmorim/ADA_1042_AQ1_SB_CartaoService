@@ -11,6 +11,7 @@ public class CartaoRequest {
 
     private String numeroCartao;
     private String nomeTitular;
+    // ajuste vencimento para futuro
     @JsonFormat(pattern = "dd-MM-yyyy")
     private LocalDate vencimentoCartao;
     private String codigoSeguranca;
