@@ -14,6 +14,7 @@ import tech.ada.bootcamp.arquitetura.cartaoservice.payloads.request.CompraReques
 import tech.ada.bootcamp.arquitetura.cartaoservice.payloads.response.CompraResponse;
 import tech.ada.bootcamp.arquitetura.cartaoservice.repositories.CartaoRepository;
 import tech.ada.bootcamp.arquitetura.cartaoservice.services.CompraService;
+import tech.ada.bootcamp.arquitetura.cartaoservice.services.NotificacaoService;
 
 import java.math.BigDecimal;
 
@@ -25,6 +26,7 @@ public class RealizarCompraController {
 
     private final CompraService compraService;
     private final CartaoRepository cartaoRepository;
+    private final NotificacaoService notificacaoService;
 
     @PostMapping(path = "/cartao-credito", produces = "application/json" )
     public ResponseEntity<CompraResponse> realizarCompra(@RequestBody CompraRequest compraRequest) throws Exception {
@@ -42,6 +44,9 @@ public class RealizarCompraController {
         Compra compra = compraService.realizarCompra(cartao, compraRequest.getLoja(),
                 BigDecimal.valueOf(compraRequest.getValor()));
 
+        // simula emitir notificação à operadora de crédito após a compra
+        notificacaoService.notificarOperadoraCompraCredito(cartao, compra.getValor());
+
         CompraResponse compraResponse = new CompraResponse();
         compraResponse.setNumeroCartao(cartao.getNumeroCartao());
         compraResponse.setLoja(compra.getLoja());
@@ -49,7 +54,6 @@ public class RealizarCompraController {
         compraResponse.setStatusCompra(compra.getStatusCompra().name());
 
         return ResponseEntity.ok(compraResponse);
-
     }
 
 }

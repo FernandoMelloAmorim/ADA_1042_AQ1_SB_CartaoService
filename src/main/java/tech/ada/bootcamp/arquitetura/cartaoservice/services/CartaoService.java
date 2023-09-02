@@ -8,7 +8,6 @@ public interface CartaoService {
 
     Cartao criarCartao(CartaoRequest cartaoRequest, Usuario usuario);
 
-
-    Cartao consultarCartaoPeloNumeroCartao(String numeroCartao);
+    Cartao consultarPeloNumeroCartao(String numeroCartao);
 
 }
