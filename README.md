@@ -12,3 +12,9 @@ Final Project Template.
   - Executar o projeto SpringBoot
   - O projeto estara disponivel: http://localhost:9080/swagger-ui/index.html
 
+### roadmap
+- tratar excecoes
+- mensagens de erro
+- adicionar validacoes
+- adicionar logs
+- ajustar validade cartao de credito no momento da criacao

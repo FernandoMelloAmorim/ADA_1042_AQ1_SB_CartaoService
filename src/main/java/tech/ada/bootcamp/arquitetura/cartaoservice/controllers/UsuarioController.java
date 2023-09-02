@@ -29,7 +29,7 @@ public class UsuarioController {
         Usuario novoUsuario = usuarioService.cadastra(cadastroUsuarioRequest);
 
         CadastroUsuarioResponse response = mapUsuarioToCadastroUsuarioResponse(novoUsuario);
-
+        log.info("Novo usuario cadastrado: {}", cadastroUsuarioRequest.getIdentificador());
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 

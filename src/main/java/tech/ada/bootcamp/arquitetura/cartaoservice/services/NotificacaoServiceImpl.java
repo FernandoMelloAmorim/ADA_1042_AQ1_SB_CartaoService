@@ -14,7 +14,6 @@ public class NotificacaoServiceImpl implements NotificacaoService {
     public void notificarOperadoraCompraCredito(Cartao cartao, BigDecimal valor) {
 
         String mensagem = String.format("Compra de R$ %.2f realizada com o cartão %s.", valor, cartao.getNumeroCartao());
-//        operadoraDeCredito.notificar(mensagem);
         System.out.println(mensagem);
     }
 
